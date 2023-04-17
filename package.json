@@ -50,5 +50,5 @@
     "react-router-dom": "^6.7.0",
     "tailwindcss": "^3.2.4"
   },
-  "proxy": "http://localhost:7000"
+  "proxy": "https://be-dncjob.onrender.com"
 }
