@@ -71,7 +71,6 @@ function Home() {
               </div>
               <div className="w-full flex">
                 {data?.map((data) => {
-                  console.log("data: ", data);
                   const b = data.posts.length;
                   let a = data.addresses[0]?.city.split(" ");
                   if (a && a[0] === "Tỉnh") {

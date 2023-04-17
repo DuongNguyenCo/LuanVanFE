@@ -86,7 +86,6 @@ function Findjob() {
             </div>
             <div className="w-9/12 grid grid-cols-2 gap-4">
               {job?.map((e) => {
-                console.log("e: ", e);
                 return (
                   <DivFindJ
                     key={e.id}
