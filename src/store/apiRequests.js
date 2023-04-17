@@ -9,6 +9,7 @@ import { setPost } from "./postSlice";
 import { setJob } from "./jobSlice";
 import axios from "axios";
 import { path } from "../utils/constant";
+require("dotenv").config();
 
 export const getCity = async (setCity) => {
   try {
@@ -35,7 +36,10 @@ export const getWard = async (idDistrict, setWard) => {
 export const registerUser = async (user, dispatch, navigate, setErr) => {
   try {
     dispatch(loading());
-    const res = await axios.post("/api/user/create", user);
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_KEY}/api/user/create`,
+      user
+    );
     console.log("res.data.errCode: ", res.data);
     if (res.data.errCode === 0) {
       localStorage.setItem("user", JSON.stringify(res.data.data.other));
@@ -53,7 +57,10 @@ export const registerUser = async (user, dispatch, navigate, setErr) => {
 export const createAddressBusiness = async (address, dispatch, setEdit) => {
   try {
     dispatch(loading());
-    const res = await axios.post("/api/address/create", address);
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_KEY}/api/address/create`,
+      address
+    );
     if (res.data.errCode === 0) {
       dispatch(success());
       setEdit(false);
@@ -67,7 +74,10 @@ export const createAddressBusiness = async (address, dispatch, setEdit) => {
 export const loginUSer = async (user, dispatch, navigate, setErr) => {
   try {
     dispatch(loading());
-    const res = await axios.post("/api/user/login", user);
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_KEY}/api/user/login`,
+      user
+    );
     if (res.data.errCode === 0) {
       localStorage.setItem("user", JSON.stringify(res.data.data.other));
       dispatch(success());
@@ -86,7 +96,10 @@ export const registerBusiness = async (busi, dispatch, navigate, setErr) => {
     dispatch(loading());
     const location = await axios.post("http://ip-api.com/json/?fields=61439");
     const a = { ...busi, city: location.data.city };
-    const res = await axios.post("/api/business/create", a);
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_KEY}/api/business/create`,
+      a
+    );
     if (res.data.errCode === 0) {
       dispatch(success());
       localStorage.setItem("business", JSON.stringify(res.data.data.other));
@@ -103,7 +116,10 @@ export const registerBusiness = async (busi, dispatch, navigate, setErr) => {
 export const loginBusiness = async (business, dispatch, navigate, setErr) => {
   try {
     dispatch(loading());
-    const res = await axios.post("/api/business/login", business);
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_KEY}/api/business/login`,
+      business
+    );
     if (res.data.errCode === 0) {
       dispatch(success());
       localStorage.setItem("business", JSON.stringify(res.data.data.other));
@@ -120,7 +136,10 @@ export const loginBusiness = async (business, dispatch, navigate, setErr) => {
 export const createAddressJob = async (address, dispatch, setErr) => {
   try {
     dispatch(loading());
-    const res = await axios.post("/api/business/create", address);
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_KEY}/api/business/create`,
+      address
+    );
     if (res.data.errCode === 0) {
     } else {
       setErr(res.data.errMessage);
@@ -133,7 +152,7 @@ export const createAddressJob = async (address, dispatch, setErr) => {
 export const getBusiness = async (setData, page, limit) => {
   try {
     const data = await axios.get(
-      `/api/business/get-all?page=${page}&limit=${limit}`
+      `${process.env.REACT_APP_API_KEY}/api/business/get-all?page=${page}&limit=${limit}`
     );
     if (data.data.errCode === 0) {
       setData(data.data.data);
@@ -143,7 +162,7 @@ export const getBusiness = async (setData, page, limit) => {
 export const getJob = async (setJob, pageJob = 1, limit) => {
   try {
     const data = await axios.get(
-      `/api/job/get-all?page=${pageJob}&limit=${limit}`
+      `${process.env.REACT_APP_API_KEY}/api/job/get-all?page=${pageJob}&limit=${limit}`
     );
     if (data.data.errCode === 0) {
       setJob(data.data.data);
@@ -152,11 +171,17 @@ export const getJob = async (setJob, pageJob = 1, limit) => {
 };
 export const getData = async (dispatch, idBusiness) => {
   try {
-    const data = await axios.get(`/api/type-job/get-all`);
-    const data1 = await axios.get(`/api/address/get-all/${idBusiness}`);
-    const data2 = await axios.get(`/api/language/get-all`);
+    const data = await axios.get(
+      `${process.env.REACT_APP_API_KEY}/api/type-job/get-all`
+    );
+    const data1 = await axios.get(
+      `${process.env.REACT_APP_API_KEY}/api/address/get-all/${idBusiness}`
+    );
+    const data2 = await axios.get(
+      `${process.env.REACT_APP_API_KEY}/api/language/get-all`
+    );
     const data3 = await axios.get(
-      `/api/business/get-all-service/${idBusiness}`
+      `${process.env.REACT_APP_API_KEY}/api/business/get-all-service/${idBusiness}`
     );
     if (data3.data.errCode === 0) {
       dispatch(setListService(data3.data.data));
@@ -176,7 +201,10 @@ export const getData = async (dispatch, idBusiness) => {
 };
 export const createJob = async (job, dispatch, setJob) => {
   try {
-    const data = await axios.post(`/api/job/create`, job);
+    const data = await axios.post(
+      `${process.env.REACT_APP_API_KEY}/api/job/create`,
+      job
+    );
     if (data.data.errCode === 0 || data.data.errCode === 1) {
       setJob(data.data.data);
       return true;
@@ -189,7 +217,10 @@ export const createJob = async (job, dispatch, setJob) => {
 };
 export const createStepPost = async (step, dispatch) => {
   try {
-    const data = await axios.post(`/api/post/create`, step);
+    const data = await axios.post(
+      `${process.env.REACT_APP_API_KEY}/api/post/create`,
+      step
+    );
     if (data.data.errCode === 0) {
       dispatch(setPost(data.data.data));
       return true;
@@ -202,7 +233,10 @@ export const createStepPost = async (step, dispatch) => {
 };
 export const createPostService = async (postService, dispatch, navigate) => {
   try {
-    const data = await axios.post(`/api/post/create/post-service`, postService);
+    const data = await axios.post(
+      `${process.env.REACT_APP_API_KEY}/api/post/create/post-service`,
+      postService
+    );
     if (data.data.errCode === 0) {
       dispatch(setPost(data.data.data));
       navigate(path.BJOB);
@@ -214,7 +248,9 @@ export const createPostService = async (postService, dispatch, navigate) => {
 export const getJobById = async (idjob, dispatch, navigate) => {
   try {
     dispatch(loading());
-    const data = await axios.get(`/api/job/get-by-id/${idjob}`);
+    const data = await axios.get(
+      `${process.env.REACT_APP_API_KEY}/api/job/get-by-id/${idjob}`
+    );
     if (data.data.errCode === 0) {
       dispatch(success());
       dispatch(setJob(data.data.data));
@@ -228,7 +264,9 @@ export const getJobById = async (idjob, dispatch, navigate) => {
 export const getBusinessById = async (idBusiness, dispatch, navigate) => {
   try {
     dispatch(loading());
-    const data = await axios.get(`/api/business/get-by-id/${idBusiness}`);
+    const data = await axios.get(
+      `${process.env.REACT_APP_API_KEY}/api/business/get-by-id/${idBusiness}`
+    );
     console.log("data: ", data);
     if (data.data.errCode === 0) {
       dispatch(success());
@@ -243,7 +281,10 @@ export const getBusinessById = async (idBusiness, dispatch, navigate) => {
 export const updateBusiness = async (business, dispatch) => {
   try {
     dispatch(loading());
-    const data = await axios.put(`/api/business/update `, business);
+    const data = await axios.put(
+      `${process.env.REACT_APP_API_KEY}/api/business/update `,
+      business
+    );
     if (data.data.errCode === 0) {
       dispatch(success());
       localStorage.setItem("business", JSON.stringify(data.data.data));
@@ -253,7 +294,9 @@ export const updateBusiness = async (business, dispatch) => {
 
 export const getAddress = async (idBusiness, dispatch) => {
   try {
-    const data1 = await axios.get(`/api/address/get-all/${idBusiness}`);
+    const data1 = await axios.get(
+      `${process.env.REACT_APP_API_KEY}/api/address/get-all/${idBusiness}`
+    );
     if (data1.data.errCode === 0) {
       dispatch(listAddressBusiness(data1.data.data));
     }
@@ -262,7 +305,10 @@ export const getAddress = async (idBusiness, dispatch) => {
 
 export const updateAddress = async (address, dispatch) => {
   try {
-    const data1 = await axios.put(`/api/address/update`, address);
+    const data1 = await axios.put(
+      `${process.env.REACT_APP_API_KEY}/api/address/update`,
+      address
+    );
     if (data1.data.errCode === 0) {
       dispatch(listAddressBusiness(data1.data.data));
     }
@@ -271,7 +317,9 @@ export const updateAddress = async (address, dispatch) => {
 
 export const getAllJob = async (id, dispatch) => {
   try {
-    const data1 = await axios.get(`/api/job/get-job-by-business/${id}`);
+    const data1 = await axios.get(
+      `${process.env.REACT_APP_API_KEY}/api/job/get-job-by-business/${id}`
+    );
     // if (data1.data.errCode === 0) {
     //   // dispatch(listAddressBusiness(data1.data.data));
     // }
