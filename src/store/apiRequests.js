@@ -154,6 +154,9 @@ export const getBusiness = async (setData, page, limit) => {
     const data = await axios.get(
       `${process.env.REACT_APP_API_KEY}/api/business/get-all?page=${page}&limit=${limit}`
     );
+    console.log(
+      `1 ${process.env.REACT_APP_API_KEY}/api/business/get-all?page=${page}&limit=${limit}`
+    );
     if (data.data.errCode === 0) {
       setData(data.data.data);
     }
