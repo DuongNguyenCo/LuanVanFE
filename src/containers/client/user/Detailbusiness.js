@@ -1,5 +1,4 @@
 import { Button, DivFindJ, Footer, Nav } from "../../../components";
-import hinh from "../../../assets/image/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getJobById } from "../../../store/apiRequests";
 import { useNavigate } from "react-router-dom";
@@ -14,8 +13,8 @@ function Detailbusiness() {
   return (
     <div className="relative">
       <Nav />
-      <div className="w-full">
-        <div className="w-1024 pb-72 pt-70 mx-auto">
+      <div className="w-full bg-phu">
+        <div className="w-1024 pb-72 pt-70 mx-auto bg-chu2">
           <div className=" h-200 border mt-3 flex p-2">
             <div className="w-3/12 mr-2 flex items-center">
               <img src={business.url} alt="logo" />
