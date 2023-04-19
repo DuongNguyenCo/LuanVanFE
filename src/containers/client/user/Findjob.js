@@ -1,6 +1,6 @@
 import { Button, Input, Nav, DivFindJ, Footer } from "../../../components";
 import { useEffect, useState } from "react";
-import { getJob } from "../../../store/apiRequests";
+import { getJob, getJobByName } from "../../../store/apiRequests";
 import { useNavigate } from "react-router-dom";
 import { getJobById } from "../../../store/apiRequests";
 import { useDispatch } from "react-redux";
@@ -10,6 +10,10 @@ function Findjob() {
   const dispatch = useDispatch();
   const [job, setJob] = useState();
   const [page, setPage] = useState(1);
+  const [find, setFind] = useState("");
+  const handleFind = () => {
+    getJobByName(find.search, setJob);
+  };
   const handleChoose = (id) => {
     getJobById(id, dispatch, navigate);
   };
@@ -27,6 +31,8 @@ function Findjob() {
               placeholder="Tìm kiếm công việc theo kỹ năng, công ty, tên công việc"
               name="search"
               className="w-8/12 mr-3"
+              setValue={setFind}
+              initValue={find}
             />
             <Input
               id="location"
@@ -34,7 +40,12 @@ function Findjob() {
               name="location"
               className="w-4/12 mr-3"
             />
-            <Button text="TÌM KIẾM" className="w-2/12 bg-button text-chu2" />
+            <div className="w-2/12 " onClick={handleFind}>
+              <Button
+                text="TÌM KIẾM"
+                className="w-full h-full bg-button text-chu2"
+              />
+            </div>
           </div>
           <div className="flex">
             <div className="w-3/12 pr-10">

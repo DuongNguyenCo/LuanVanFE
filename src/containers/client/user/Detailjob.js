@@ -55,11 +55,11 @@ function Detailjob() {
                   </div>
                 </div>
               </div>
-              <div className="grid grid-rows-4 gap-2 px-10 mt-3">
+              <div className="flex flex-col gap-2 px-10 mt-3">
                 <div className="w-full flex">
                   {job.languages.map((e, i) => {
                     return (
-                      <p className="w-20 mr-5 border text-center" key={i}>
+                      <p className="w-20 mr-3 border text-center" key={i}>
                         {e.name}
                       </p>
                     );

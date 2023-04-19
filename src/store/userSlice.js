@@ -9,7 +9,6 @@ export const userSlile = createSlice({
   },
   reducers: {
     registerSuccess: (state, action) => {
-      console.log(action);
       state.candidate = action.payload.other;
       state.isLogin = true;
       state.token = action.payload.token;

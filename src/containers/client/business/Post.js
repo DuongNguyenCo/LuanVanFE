@@ -311,7 +311,7 @@ function Post() {
     setLocation(configAddress);
   }, [addresses]);
   return (
-    <>
+    <div className="relative">
       <Nav type="business" />
       <div className="w-full bg-phu " id="content">
         <div className="w-1360 mx-auto">
@@ -805,7 +805,7 @@ function Post() {
         </div>
       </div>
       <Footer type={null} />
-    </>
+    </div>
   );
 }
 export default Post;

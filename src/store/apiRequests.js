@@ -313,13 +313,24 @@ export const updateAddress = async (address, dispatch) => {
   } catch (err) {}
 };
 
-export const getAllJob = async (id, dispatch) => {
+export const getAllJob = async (id, setData) => {
   try {
     const data1 = await axios.get(
       `${process.env.REACT_APP_URL_SERVER}/api/job/get-job-by-business/${id}`
     );
-    // if (data1.data.errCode === 0) {
-    //   // dispatch(listAddressBusiness(data1.data.data));
-    // }
+    if (data1.data.errCode === 0) {
+      setData(data1.data.data);
+    }
+  } catch (err) {}
+};
+
+export const getJobByName = async (name, setJob) => {
+  try {
+    const data1 = await axios.get(
+      `${process.env.REACT_APP_URL_SERVER}/api/post/find?name=${name}`
+    );
+    if (data1.data.errCode === 0) {
+      setJob(data1.data.data);
+    }
   } catch (err) {}
 };

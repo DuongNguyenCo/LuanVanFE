@@ -1,6 +1,12 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as fullHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import hinh from "../assets/image/logo.png";
-
+import Button from "./Button";
+import { useState } from "react";
 function DivHomejob(prop) {
+  const [like, setLike] = useState(true);
+
   const { listLanguage, nameBusiness, nameJob, url, onClick, id } = prop;
   return (
     <div
@@ -9,7 +15,7 @@ function DivHomejob(prop) {
         onClick(id);
       }}
     >
-      <div className=" w-full min-h-122 flex flex-wrap justify-center p-2 bg-chu2">
+      <div className=" w-full  flex flex-wrap justify-center p-2 bg-chu2">
         <div className="w-full flex mb-2 ">
           <div className="w-2/12">
             <div className="w-full h-full flex items-center">
@@ -21,10 +27,25 @@ function DivHomejob(prop) {
             </div>
           </div>
           <div className="w-9/12 ml-3">
-            <p>{nameJob}</p>
-            <b>{nameBusiness}</b>
+            <div className="whitespace-nowrap overflow-hidden text-ellipsis">
+              {nameJob}
+            </div>
+            <div className="whitespace-nowrap overflow-hidden text-ellipsis font-bold">
+              {nameBusiness}
+            </div>
           </div>
-          <div className="w-1/12">0</div>
+          <div className="w-5">
+            <Button
+              className="w-full h-full text-center my-auto border-none"
+              text={
+                <FontAwesomeIcon
+                  icon={like ? fullHeart : solidHeart}
+                  className="w-full h-full "
+                  // style={{ color: "rgb(234, 30, 48)" }}
+                />
+              }
+            />
+          </div>
         </div>
         <div className="w-full flex ">
           {listLanguage.map((e, i) => {

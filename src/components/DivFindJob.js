@@ -20,7 +20,7 @@ function Divfindjob(prop) {
         onClick(id);
       }}
     >
-      <div className="w-full min-h-228 border p-4 ">
+      <div className="w-full  border p-4 ">
         <div className="w-full flex mb-2">
           <div className="w-2/12">
             <div className="w-full h-full flex items-center">
@@ -28,13 +28,18 @@ function Divfindjob(prop) {
             </div>
           </div>
           <div className="w-9/12 ml-3">
-            <p>{nameJob}</p>
-            <p className="min-h-50">{nameBusiness}</p>
+            <div className="whitespace-nowrap overflow-hidden text-ellipsis">
+              {nameJob}
+            </div>
+
+            <div className="whitespace-nowrap overflow-hidden text-ellipsis">
+              {nameBusiness}
+            </div>
           </div>
           <div className="w-1/12 text-center">0</div>
         </div>
         <div className="flex flex-wrap">
-          <div className="w-full ">
+          <div className="w-full flex flex-wrap">
             {listLocation?.map((e, i) => {
               return (
                 <p className=" mr-2 my-1 " key={i}>
