@@ -13,7 +13,7 @@ function Job() {
   return (
     <div className="relative">
       <Nav type="business" />
-      <div className="w-full h-screen bg-phu ">
+      <div className="w-full bg-phu ">
         <div className="w-1360 mx-auto pt-70">
           <div className=" w-full bg-chu2 mt-3">
             <div className="flex pl-5 mb-3 ">
