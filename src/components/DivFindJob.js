@@ -23,15 +23,14 @@ function Divfindjob(prop) {
       <div className="w-full  border p-4 ">
         <div className="w-full flex mb-2">
           <div className="w-2/12">
-            <div className="w-full h-full flex items-center">
+            <div className="w-full h-48 flex items-center">
               <img src={url} alt="hinh" className="w-auto h-fit mx-auto" />
             </div>
           </div>
-          <div className="w-9/12 ml-3">
+          <div className="w-9/12 ml-3 ">
             <div className="whitespace-nowrap overflow-hidden text-ellipsis">
               {nameJob}
             </div>
-
             <div className="whitespace-nowrap overflow-hidden text-ellipsis">
               {nameBusiness}
             </div>
