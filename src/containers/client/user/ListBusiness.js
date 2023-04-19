@@ -17,8 +17,8 @@ function Listbusiness() {
   return (
     <div className="relative">
       <Nav />
-      <div className="w-full ">
-        <div className="w-1360 h-screen mx-auto pb-72 pt-70">
+      <div className="w-full bg-phu">
+        <div className="w-1360 h-screen mx-auto pb-72 pt-70 bg-chu2 px-4">
           <div className="w-8/12 mx-auto flex py-5 px-2 justify-around">
             <Input placeholder="Nhập tên công ty" className="w-9/12 " />
             <Button text="Tìm kiếm" className="w-2/12 bg-button text-chu2" />
